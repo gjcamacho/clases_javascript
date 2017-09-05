@@ -39,6 +39,8 @@ if(isset($_POST["nombre"])){
 			app.controller("AppController", function($scope){
 				console.log("AppController initialized");
 
+				var apellidoPaterno="Camacho";
+
 				$scope.nombre="Juan";
 
 				$scope.arreglo=["String 1", "String 2", "String 3"];
@@ -54,6 +56,7 @@ if(isset($_POST["nombre"])){
 			app.controller("OtroController", function($scope){
 				console.log("OtroController initialized");
 
+				var apellidoPaterno="Gonzalez";
 			});
 		</script>
 
@@ -61,6 +64,11 @@ if(isset($_POST["nombre"])){
 	<body ng-app="app">
 
 		<div ng-controller="AppController">
+
+			<test>
+				Hola
+			</test>
+
 			<div>Angular Examples</div>
 			<input type="text" ng-model="nombre">
 			Hola {{nombre}} como estas
