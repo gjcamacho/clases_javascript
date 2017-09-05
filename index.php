@@ -29,10 +29,62 @@ if(isset($_POST["nombre"])){
 				color: #121212;
 			}
 		</style>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="js/jquery/jquery.min.js"></script>
+		<script src="js/angular/angular.min.js"></script>
+
+
+		<script>
+			var app=angular.module("app", []);
+
+			app.controller("AppController", function($scope){
+				console.log("AppController initialized");
+
+				$scope.nombre="Juan";
+
+				$scope.arreglo=["String 1", "String 2", "String 3"];
+
+				$scope.agregarAArreglo=function(){
+					console.log("click!!!!!");
+
+					$scope.arreglo.push($scope.cadenaAAgregar);
+				};
+
+			});
+
+			app.controller("OtroController", function($scope){
+				console.log("OtroController initialized");
+
+			});
+		</script>
 
 	</head>
-	<body>
+	<body ng-app="app">
+
+		<div ng-controller="AppController">
+			<div>Angular Examples</div>
+			<input type="text" ng-model="nombre">
+			Hola {{nombre}} como estas
+
+			<ul>
+				<li ng-repeat="string in arreglo">{{string}}</li>
+			</ul>
+
+			<input type="text" ng-model="cadenaAAgregar">
+			<button class="button" ng-click="agregarAArreglo()">Boton a agregar</button>
+		</div>
+
+		<div ng-controller="OtroController">
+		</div>
+
+
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+
 		
 <?php
 
