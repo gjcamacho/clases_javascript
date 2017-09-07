@@ -40,10 +40,30 @@
 
 			});
 
-			app.controller("OtroController", function($scope){
+			app.controller("OtroController", function($scope, $http){
 				console.log("OtroController initialized");
 
 				var apellidoPaterno="Gonzalez";
+
+				$scope.students=[];
+
+				$scope.descargarDatos=function(){
+					console.log("click!!");
+
+					$http.get("students_json.php").then(
+						function(response){
+							console.log("RESPUESTA!!!! =)");
+							console.log(response.data);
+
+							$scope.students=response.data;
+						},
+						function(errData){
+							console.log("ERROR!!!!!! =(");
+							console.log(errData);
+						}
+
+					);
+				};
 			});
 
 			app.directive('test', function() {
@@ -51,24 +71,41 @@
 
 			    directive.restrict = 'E';
 
-			    directive.replace=true;
+			    directive.replace=false;
 
 				directive.template = "<div>Mi primer directiva: {{texto}}</div>";
 
-			    directive.compile=function(element, attributes){
-			    	console.log("Compiling");
-			    	console.log(element);
-			    	console.log(attributes);
+			    return directive;
+			});
 
-			    	var link=function($scope, element, attributes){
-			    		console.log("Linking");
-			    	};
+			app.directive('titulo', function() {
+			    var directive = {};
 
-			    	return link;
-			    }
+			    directive.restrict = 'A';
+
+			    directive.replace=false;
+
+				directive.template = "<h1>{{texto}}</h1>";
+
+				directive.compile=function(element, attributes){
+					console.log("Compiling");
+
+					console.log(element);
+					console.log(attributes);
+
+					var link=function($scope, element, attributes){
+						console.log("Linkin");
+
+						console.log(element);
+						console.log(attributes);
+					};
+
+					return link;
+				}
 
 			    return directive;
 			});
+
 		</script>
 
 	</head>
@@ -79,6 +116,11 @@
 			<test atributo="attr1">
 				Hola
 			</test>
+
+			<div class="pull-right" titulo>
+				hola 2
+			</div>
+
 
 			<div>Angular Examples</div>
 			<input type="text" ng-model="nombre">
@@ -93,6 +135,21 @@
 		</div>
 
 		<div ng-controller="OtroController">
+			<table>
+				<thead>
+					<tr>
+						<th>Estudiante</th>
+						<th>Apellido</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="student in students">
+						<td ng-repeat="element in student">{{element}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<button ng-click="descargarDatos()">Descargar</button>
 		</div>
 
 
