@@ -43,6 +43,8 @@ if(isset($_POST["nombre"])){
 
 				$scope.nombre="Juan";
 
+				$scope.texto="texto insertado";
+
 				$scope.arreglo=["String 1", "String 2", "String 3"];
 
 				$scope.agregarAArreglo=function(){
@@ -51,12 +53,41 @@ if(isset($_POST["nombre"])){
 					$scope.arreglo.push($scope.cadenaAAgregar);
 				};
 
+				$scope.descargarDatos=function(){
+					$http.get(dir, options).then(function(response) {
+					}, function(errData){
+
+					});
+				}
+
 			});
 
 			app.controller("OtroController", function($scope){
 				console.log("OtroController initialized");
 
 				var apellidoPaterno="Gonzalez";
+			});
+
+			app.directive('test', function() {
+			    var directive = {};
+
+			    directive.restrict = 'E'; /* restrict this directive to elements */
+
+				//directive.template = "Mi primer directiva: {{texto}}";
+
+			    directive.compile=function(element, attributes){
+			    	console.log("Compiling");
+			    	console.log(element);
+			    	console.log(attributes);
+
+			    	var link=function($scope, element, attributes){
+			    		console.log("Linking");
+			    	};
+
+			    	return link;
+			    }
+
+			    return directive;
 			});
 		</script>
 
@@ -65,7 +96,7 @@ if(isset($_POST["nombre"])){
 
 		<div ng-controller="AppController">
 
-			<test>
+			<test atributo="attr1">
 				Hola
 			</test>
 
