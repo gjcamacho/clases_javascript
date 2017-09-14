@@ -1,6 +1,7 @@
 
 <html>
 	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 		<style>
 			.disappear{
 				display:none;
@@ -16,7 +17,8 @@
 		</style>
 		<script src="js/jquery/jquery.min.js"></script>
 		<script src="js/angular/angular.min.js"></script>
-
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 		<script>
 			var app=angular.module("app", []);
@@ -149,7 +151,25 @@
 				</tbody>
 			</table>
 
-			<button ng-click="descargarDatos()">Descargar</button>
+			<button ng-click="descargarDatos()" class="btn btn-danger">Descargar</button>
+
+			<a href="http://google.com" class="btn btn-primary btn-lg">Google</a>
+
+			<div class="row">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+					col 1
+				</div>
+				<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+					col 2
+				</div>
+				<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+					col 3
+				</div>
+				<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+					col 4
+				</div>
+			</div>
+
 		</div>
 
 
